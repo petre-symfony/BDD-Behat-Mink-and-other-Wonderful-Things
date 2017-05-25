@@ -5,6 +5,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Hook\Call\AfterScenario;
 
 /**
  * Defines application features from the specific context.
@@ -22,6 +23,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
   {
     mkdir('test');
     chdir('test');
+  }
+  
+  /**
+   * @AfterScenario
+   */
+  public function moveOutOfTestDir() {
+    chdir('..');
+    if (is_dir('test')){
+      system('rm -r '.realpath('test'));
+    }
   }
   
   /**
