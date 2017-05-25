@@ -11,14 +11,39 @@ use Behat\Behat\Context\SnippetAcceptingContext;
  */
 class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
 {
-    /**
-     * Initializes context.
-     *
-     * Every scenario gets its own context instance.
-     * You can also pass arbitrary arguments to the
-     * context constructor through behat.yml.
-     */
-    public function __construct()
-    {
-    }
+  /**
+   * Initializes context.
+   *
+   * Every scenario gets its own context instance.
+   * You can also pass arbitrary arguments to the
+   * context constructor through behat.yml.
+   */
+  public function __construct()
+  {
+  }
+  
+  /**
+   * @Given there is a file named :filename
+   */
+  public function thereIsAFileNamed($filename)
+  {
+    touch($filename);
+  }
+
+  /**
+   * @When I run :command
+   */
+  public function iRun($command)
+  {
+    shell_exec($command);
+  }
+
+  /**
+   * @Then I should see :arg1 in the output
+   */
+  public function iShouldSeeInTheOutput($arg1)
+  {
+      throw new PendingException();
+  }
+    
 }
