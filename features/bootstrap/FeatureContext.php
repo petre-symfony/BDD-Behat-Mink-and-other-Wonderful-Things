@@ -6,6 +6,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Call\AfterScenario;
+use Behat\Behat\Hook\Call\BeforeScenario;
 
 /**
  * Defines application features from the specific context.
@@ -21,10 +22,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
    */
   public function __construct()
   {
-    mkdir('test');
-    chdir('test');
+    
   }
   
+  /**
+   * @BeforeScenario
+   */
+  public function moveIntoTestDir(){
+    if(!is_dir('test')){
+      mkdir('test'); 
+    }
+    chdir('test'); 
+  }
+
+
   /**
    * @AfterScenario
    */
