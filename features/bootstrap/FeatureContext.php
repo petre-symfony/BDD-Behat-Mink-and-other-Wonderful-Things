@@ -9,8 +9,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
-{
+class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext {
+  private $output;
   /**
    * Initializes context.
    *
@@ -35,13 +35,13 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
    */
   public function iRun($command)
   {
-    shell_exec($command);
+    $this->output = shell_exec($command);
   }
 
   /**
-   * @Then I should see :arg1 in the output
+   * @Then I should see :string in the output
    */
-  public function iShouldSeeInTheOutput($arg1)
+  public function iShouldSeeInTheOutput($string)
   {
       throw new PendingException();
   }
