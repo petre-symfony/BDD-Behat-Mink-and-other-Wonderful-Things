@@ -8,6 +8,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Call\AfterScenario;
 use Behat\Behat\Hook\Call\BeforeScenario;
 
+require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+
 /**
  * Defines application features from the specific context.
  */
@@ -66,10 +68,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
    * @Then I should see :string in the output
    */
   public function iShouldSeeInTheOutput($string)
-  {
-    if (strpos($this->output, $string) === false){
-      throw new \Exception(sprintf('Did not see "%s" in output "%s"', $string, $this->output));
-    }
+  { 
+    assertContains(
+      $string, 
+      $this->output,
+      sprintf('Did not see "%s" in output "%s"', $string, $this->output)      
+    );
   }
     
 }
