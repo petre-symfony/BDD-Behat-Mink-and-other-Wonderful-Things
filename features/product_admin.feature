@@ -8,3 +8,12 @@ Feature: Product Admin Area
     And I am on "/admin"
     When I click "Products"
     Then I should see 5 products
+
+  Scenario: Add a new product
+    Given I am on "/admin/products"
+    When I click "New Product"
+    And I fill in "Name" with "Veloci-chew toy"
+    And I fill in price with "20"
+    And I fill in "Description" with "Have your raptor chew on this instead!"
+    And I press "Save"
+    Then I should see "Product created FTW!"
