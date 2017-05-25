@@ -43,7 +43,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
    */
   public function iShouldSeeInTheOutput($string)
   {
-      throw new PendingException();
+    if (strpos($this->output, $string) === false){
+      throw new \Exception(sprintf('Did not see "%s" in output "%s"', $string, $this->output));
+    }
   }
     
 }
