@@ -75,5 +75,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
       sprintf('Did not see "%s" in output "%s"', $string, $this->output)      
     );
   }
+  
+  /**
+   * @Given there is a dir named :dir
+   */
+  public function thereIsADirNamed($dir)
+  {
+    mkdir($dir);    
+  }
+
     
 }
