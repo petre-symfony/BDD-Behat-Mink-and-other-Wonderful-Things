@@ -8,4 +8,4 @@ Feature: ls
     And there is a file named "hammond"
     When I run "ls"
     Then I should see "john" in the output
-    And I should see "hammond2" in the output
+    And I should see "hammond" in the output
