@@ -26,13 +26,7 @@ $nav = $page->find('css', '.subnav-2');
 $linkEl = $nav->find('css', 'li a');
 
 $selectorHandler = $session->getSelectorsHandler();
-$linkEl = $page->find(
-  'named',
-  array(
-    'link',
-    $selectorHandler->xpathLiteral('Wiki Activity')
-  )
-);
+$linkEl = $page->findLink('Wiki Activity');
 
 var_dump($linkEl->getAttribute('href'));
 
