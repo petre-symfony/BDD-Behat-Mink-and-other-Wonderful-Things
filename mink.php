@@ -27,8 +27,11 @@ $linkEl = $nav->find('css', 'li a');
 
 $selectorHandler = $session->getSelectorsHandler();
 $linkEl = $page->findLink('Wiki Activity');
-$page->findField('Description');
-$page->findButton('Save');
-
+//$page->findField('Description');
+//$page->findButton('Save');
 var_dump($linkEl->getAttribute('href'));
+
+$linkEl->click();
+
+var_dump($session->getCurrentUrl());
 
