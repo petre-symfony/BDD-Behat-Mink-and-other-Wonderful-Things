@@ -14,7 +14,7 @@ $session->start();
 
 $session->visit('http://jurassicpark.wikia.com');
 
-var_dump($session->getStatusCode(),$session->getCurrentUrl());
+var_dump($session->getCurrentUrl());
 
 //DocumentElement
 $page = $session->getPage();
