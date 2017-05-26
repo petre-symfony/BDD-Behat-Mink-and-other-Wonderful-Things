@@ -24,5 +24,15 @@ var_dump($header->getText());
 
 $nav = $page->find('css', '.subnav-2');
 $linkEl = $nav->find('css', 'li a');
-var_dump($linkEl->getText());
+
+$selectorHandler = $session->getSelectorsHandler();
+$linkEl = $page->find(
+  'named',
+  array(
+    'link',
+    $selectorHandler->xpathLiteral('Wiki Activity')
+  )
+);
+
+var_dump($linkEl->getAttribute('href'));
 
