@@ -22,3 +22,6 @@ var_dump(substr($page->getText(), 0, 75));
 $header = $page->find('css', '.WikiHeader .WikiNav h2');
 var_dump($header->getText());
 
+$nav = $page->find('css', '.subnav-2');
+var_dump($nav->getHtml());
+
