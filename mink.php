@@ -23,5 +23,6 @@ $header = $page->find('css', '.WikiHeader .WikiNav h2');
 var_dump($header->getText());
 
 $nav = $page->find('css', '.subnav-2');
-var_dump($nav->getHtml());
+$linkEl = $nav->find('css', 'li a');
+var_dump($linkEl->getText());
 
