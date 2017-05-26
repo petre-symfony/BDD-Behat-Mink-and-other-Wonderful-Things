@@ -3,11 +3,14 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Behat\Mink\Driver\GoutteDriver;
+use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Session;
 
-$driver = new GoutteDriver();
+//$driver = new GoutteDriver();
+$driver = new Selenium2Driver();
 
 $session = new Session($driver);
+$session->start();
 
 $session->visit('http://jurassicpark.wikia.com');
 
@@ -34,4 +37,5 @@ var_dump($linkEl->getAttribute('href'));
 $linkEl->click();
 
 var_dump($session->getCurrentUrl());
+$session->stop();
 
