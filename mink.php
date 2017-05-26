@@ -18,3 +18,7 @@ $page = $session->getPage();
 
 var_dump(substr($page->getText(), 0, 75));
 
+//NodeElement
+$header = $page->find('css', '.WikiHeader .WikiNav h2');
+var_dump($header->getText());
+
