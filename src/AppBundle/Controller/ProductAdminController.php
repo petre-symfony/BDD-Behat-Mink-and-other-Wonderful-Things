@@ -21,4 +21,11 @@ class ProductAdminController extends Controller {
       'products' => $products
     ]);
   }
+  
+  /**
+   * @Route("/admin/products/new", name="product_new")
+   */
+  public function newAction(){
+    return $this->render('product/new.html.twig');  
+  }
 }
