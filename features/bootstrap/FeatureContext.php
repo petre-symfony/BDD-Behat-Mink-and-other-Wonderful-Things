@@ -40,6 +40,14 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
   
   /**
+     * @Given there is an admin user :username with password :password
+     */
+  public function thereIsAnAdminUserWithPassword($username, $password){
+      throw new PendingException();
+  }
+
+  
+  /**
    * @return \Behat\Mink\Element\DocumentElement
    */
   private function getPage(){
