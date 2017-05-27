@@ -7,7 +7,6 @@ Feature: Authentication
     Given I am on "/"
     When I follow "Login"
     And I fill in "Username" with "admin"
-    And I fill in "Password" with "adminpass"
+    And I fill in "Password" with "pass"
     And I press "Login"
-    And print last response
     Then I should see "Logout" 
