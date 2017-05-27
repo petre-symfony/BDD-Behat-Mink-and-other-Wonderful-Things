@@ -25,3 +25,4 @@ Feature: Product Admin Area
     And I fill in "Description" with "Have your raptor chew on this instead!"
     And I press "Save"
     Then I should see "Product created FTW!"
+    And I should see "Veloci-chew toy"

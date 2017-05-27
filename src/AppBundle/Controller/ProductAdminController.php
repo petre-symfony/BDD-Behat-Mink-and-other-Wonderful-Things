@@ -27,6 +27,15 @@ class ProductAdminController extends Controller {
    */
   public function newAction(Request $request){
     if ($request->isMethod("POST")){
+      $product = new Product();
+      $product->setName($request->get('name'));
+      $product->setDescription($request->get('description'));
+      $product->setPrice($request->get('price'));
+      
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($product);
+      $em->flush();
+      
       $this->addFlash('success', 'Product created FTW!');
       
       return $this->redirectToRoute('product_list');
