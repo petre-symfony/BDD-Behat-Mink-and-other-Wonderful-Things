@@ -19,6 +19,7 @@ require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functio
  * Defines application features from the specific context.
  */
 class FeatureContext extends RawMinkContext implements Context, SnippetAcceptingContext {
+  private $currentuser;
   use KernelDictionary;
   
   public function __construct(){
@@ -58,6 +59,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     $em = $this->getContainer()->get('doctrine')->getManager();
     $em->persist($user);
     $em->flush();
+    
+    return $user;
   }
 
   /**
@@ -81,7 +84,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    * @Given I author :count products
    */
   public function iAuthorProducts($count){
-    $this->createProducts($count);
+    $this->createProducts($count, $this->currentuser);
   }
   
   /**
@@ -107,7 +110,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    * @Given I am logged in as an admin
    */
   public function iAmLoggedInAsAnAdmin(){
-    $this->thereIsAnAdminUserWithPassword('admin', 'admin');
+    $this->currentuser = $this->thereIsAnAdminUserWithPassword('admin', 'admin');
     //$this->getSession()->visit('/login');
     $this->visitPath('/login');
     //$this->getPage()->findField('Username')->setValue('admin)
