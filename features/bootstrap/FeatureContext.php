@@ -8,6 +8,7 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Call\BeforeSuite;
 use Behat\Behat\Hook\Call\BeforeScenario;
+use Behat\Symfony2Extension\Context\KernelDictionary;
 use AppBundle\Entity\User;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
@@ -16,25 +17,11 @@ require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functio
  * Defines application features from the specific context.
  */
 class FeatureContext extends RawMinkContext implements Context, SnippetAcceptingContext {
-  private static $container;
-
+  use KernelDictionary;
+  
   public function __construct(){
     
   }
-  
-  /**
-   * @BeforeSuite
-   */
-  public static function bootstrapSymfony(){
-    require __DIR__.'/../../app/autoload.php';
-    require __DIR__.'/../../app/AppKernel.php';
-    
-    $kernel = new AppKernel('test', true);
-    $kernel->boot();
-    
-    self::$container = $kernel->getContainer();
-  }
-
 
   /**
    * @When I fill in the search box with :term
