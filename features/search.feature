@@ -6,12 +6,13 @@ Feature: Search
   Background:
     Given I am on "/" 
 
-  Scenario: Searching for a product that exists
-    When I fill in "searchTerm" with "Samsung"
+  Scenario Outline: 
+    When I fill in "searchTerm" with "<term>"
     And I press "search_submit"
-    Then I should see "Samsung Galaxy"
+    Then I should see "<result>"
+    Examples:
+      |   term   |       result      |
+      | Samsung  |   Samsung Galaxy  |
+      |   XBox   | No products found |
 
-  Scenario: Searching for a product that does not exist
-    When I fill in "searchTerm" with "Xbox"
-    And I press "search_submit"
-    Then I should see "No products found"
+  
