@@ -13,7 +13,7 @@ Feature: ls
     And I should see "hammond" in the output
 
   Scenario: List 1 file in 1 directory
-    Given there is a dir named "ingen"
+    Given there is a dir named "test"
     When I run "ls"
     Then I should see "john" in the output
-    And I should see "ingen" in the output 
+    And I should see "test" in the output 
