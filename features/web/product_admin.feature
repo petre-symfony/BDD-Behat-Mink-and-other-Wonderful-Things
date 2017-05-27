@@ -18,6 +18,7 @@ Feature: Product Admin Area
 
   Scenario: Add a new product
     Given I am on "/admin/products"
+    And print last response
     When I click "New Product"
     And I fill in "Name" with "Veloci-chew toy"
     And I fill in "Price" with "20"
