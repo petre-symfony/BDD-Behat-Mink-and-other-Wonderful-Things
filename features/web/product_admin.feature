@@ -26,3 +26,4 @@ Feature: Product Admin Area
     And I press "Save"
     Then I should see "Product created FTW!"
     And I should see "Veloci-chew toy"
+    And I should not see "Anonymous"
