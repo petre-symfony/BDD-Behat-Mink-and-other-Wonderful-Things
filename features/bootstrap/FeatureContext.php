@@ -18,6 +18,15 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     
   }
   
+  public function bootstrapSymfony(){
+    require __DIR__.'/../../app/autoload.php';
+    require __DIR__.'/../../app/AppKernel.php';
+    
+    $kernel = new AppKernel('test', true);
+    $kernel->boot();
+  }
+
+
   /**
    * @When I fill in the search box with :term
    */
