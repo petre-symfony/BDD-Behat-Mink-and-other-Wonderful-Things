@@ -10,6 +10,7 @@ use Behat\Testwork\Hook\Call\BeforeSuite;
 use Behat\Behat\Hook\Call\BeforeScenario;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use AppBundle\Entity\User;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
@@ -63,8 +64,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    */
   public function clearData(){
     $em = $this->getContainer()->get('doctrine')->getManager();
-    $em->createQuery('DELETE FROM AppBundle:Product')->execute();
-    $em->createQuery('DELETE FROM AppBundle:User')->execute();
+    $purger = new ORMPurger($em);
+    $purger->purge();
   }
 
   /**
