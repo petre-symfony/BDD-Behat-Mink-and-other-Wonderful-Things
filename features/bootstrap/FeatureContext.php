@@ -91,8 +91,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   public function iFillInTheSearchBoxWith($term)
   {
     // name="searchTerm";
-    $searchBox = $this->getSession()
-      ->getPage()
+    $searchBox = $this->getPage()
       ->find('css', '[name="searchTerm"]');
     
     assertNotNull($searchBox, 'The search box was not found');
@@ -104,13 +103,19 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    */
   public function iPressTheSearchButton()
   {
-    $button = $this->getSession()
-      ->getPage()
+    $button = $this->getPage()
       ->find('css', '#search_submit');
     
     assertNotNull($button, 'The search button could not be found');
     
     $button->press();
+  }
+  
+  /**
+   * @return \Behat\Mink\Element\DocumentElement
+   */
+  private function getPage(){
+    return $this->getSession()->getPage();
   }
  
 }
