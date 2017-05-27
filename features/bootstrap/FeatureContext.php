@@ -7,6 +7,7 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Call\BeforeSuite;
+use AppBundle\Entity\User;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
@@ -59,7 +60,14 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      * @Given there is an admin user :username with password :password
      */
   public function thereIsAnAdminUserWithPassword($username, $password){
-      throw new PendingException();
+    $user = new User();
+    $user->setUsername($username);
+    $user->setPlainPassword($password);
+    $user->setRoles(array('ROLE_ADMIN'));
+    
+    $em = self::$container->get('doctrine')->getManager();
+    $em->persist($user);
+    $em->flush();
   }
 
   
