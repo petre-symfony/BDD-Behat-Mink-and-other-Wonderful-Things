@@ -53,7 +53,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     $user->setPlainPassword($password);
     $user->setRoles(array('ROLE_ADMIN'));
     
-    $em = self::$container->get('doctrine')->getManager();
+    $em = $this->getContainer()->get('doctrine')->getManager();
     $em->persist($user);
     $em->flush();
   }
@@ -62,7 +62,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    * @BeforeScenario
    */
   public function clearData(){
-    $em = self::$container->get('doctrine')->getManager();
+    $em = $this->getContainer()->get('doctrine')->getManager();
     $em->createQuery('DELETE FROM AppBundle:Product')->execute();
     $em->createQuery('DELETE FROM AppBundle:User')->execute();
   }
