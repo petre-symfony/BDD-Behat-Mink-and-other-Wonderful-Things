@@ -103,6 +103,21 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     
     assertCount(intval($count), $table->findAll('css', 'tbody tr'));
   }
+  
+  /**
+   * @Given I am logged in as an admin
+   */
+  public function iAmLoggedInAsAnAdmin(){
+    $this->thereIsAnAdminUserWithPassword('admin', 'admin');
+    //$this->getSession()->visit('/login');
+    $this->visitPath('/login');
+    //$this->getPage()->findField('Username')->setValue('admin)
+    $this->getPage()->fillField('Username', 'admin');
+    $this->getPage()->fillField('Password', 'admin');
+    //$this->getPage()->findButton('Login')->press();
+    $this->getPage()->pressButton('Login');
+  }
+
   /**
    * @return \Behat\Mink\Element\DocumentElement
    */
