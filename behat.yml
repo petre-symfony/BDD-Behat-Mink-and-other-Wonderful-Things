@@ -5,7 +5,9 @@ default:
       base_url: http://localhost
       goutte: ~
       selenium2: ~
-      
+    
+    Behat\Symfony2Extension:
+        
   suites:
     default:
       contexts:
