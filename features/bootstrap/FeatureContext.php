@@ -10,6 +10,7 @@ use Behat\Testwork\Hook\Call\BeforeSuite;
 use Behat\Behat\Hook\Call\BeforeScenario;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Product;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
@@ -68,11 +69,48 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     $purger->purge();
   }
 
+  
+  /**
+     * @Given there are :count products
+     */
+  public function thereAreProducts($count){
+    $em = $this->getEntityManager();
+    for ($i=0; $i < $count; $i++){
+      $product = new Product();
+      $product->setName('Product '.$i);
+      $product->setPrice(rand(10, 100));
+      $product->setDescription('lorem');
+      
+      $em->persist($product);
+    }
+    $em->flush();
+  }
+
+  /**
+   * @When I click :arg1
+   */
+  public function iClick($arg1){
+      throw new PendingException();
+  }
+
+  /**
+   * @Then I should see :arg1 products
+   */
+  public function iShouldSeeProducts($arg1){
+      throw new PendingException();
+  }
   /**
    * @return \Behat\Mink\Element\DocumentElement
    */
   private function getPage(){
     return $this->getSession()->getPage();
   }
- 
+  
+  /**
+   * @return \Doctrine\ORM\EntityManager
+   */
+  private function getEntityManager() {
+    return $this->getContainer()->get('doctrine.orm.entity_manager');
+  }
+
 }
