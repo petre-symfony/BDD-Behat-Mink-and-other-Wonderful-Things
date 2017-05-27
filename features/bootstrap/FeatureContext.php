@@ -7,6 +7,7 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Call\BeforeSuite;
+use Behat\Behat\Hook\Call\BeforeScenario;
 use AppBundle\Entity\User;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
@@ -70,7 +71,15 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     $em->flush();
   }
 
-  
+  /**
+   * @BeforeScenario
+   */
+  public function clearData(){
+    $em = self::$container->get('doctrine')->getManager();
+    $em->createQuery('DELETE FROM AppBundle:Product')->execute();
+    $em->createQuery('DELETE FROM AppBundle:User')->execute();
+  }
+
   /**
    * @return \Behat\Mink\Element\DocumentElement
    */
