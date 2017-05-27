@@ -95,10 +95,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
 
   /**
-   * @Then I should see :arg1 products
+   * @Then I should see :count products
    */
-  public function iShouldSeeProducts($arg1){
-      throw new PendingException();
+  public function iShouldSeeProducts($count){
+    $table = $this->getPage()->find('css', 'table.table');
+    assertNotNull($table, 'Could not found a table');
+    
+    assertCount(intval($count), $table->findAll('css', 'tbody tr'));
   }
   /**
    * @return \Behat\Mink\Element\DocumentElement
