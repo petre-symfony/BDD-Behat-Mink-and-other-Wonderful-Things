@@ -6,6 +6,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Testwork\Hook\Call\BeforeSuite;
 
 require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
@@ -13,17 +14,23 @@ require_once __DIR__.'/../../vendor/phpunit/phpunit/src/Framework/Assert/Functio
  * Defines application features from the specific context.
  */
 class FeatureContext extends RawMinkContext implements Context, SnippetAcceptingContext {
-  
+  private static $container;
+
   public function __construct(){
     
   }
   
-  public function bootstrapSymfony(){
+  /**
+   * @BeforeSuite
+   */
+  public static function bootstrapSymfony(){
     require __DIR__.'/../../app/autoload.php';
     require __DIR__.'/../../app/AppKernel.php';
     
     $kernel = new AppKernel('test', true);
     $kernel->boot();
+    
+    self::$container = $kernel->getContainer();
   }
 
 
