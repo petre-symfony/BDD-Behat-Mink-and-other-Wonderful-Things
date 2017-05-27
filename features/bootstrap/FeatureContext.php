@@ -87,10 +87,11 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
 
   /**
-   * @When I click :arg1
+   * @When I click :linkText
    */
-  public function iClick($arg1){
-      throw new PendingException();
+  public function iClick($linkText){
+    //$this->getPage()->findLink($linkText)->click();
+    $this->getPage()->clickLink($linkText);
   }
 
   /**
