@@ -74,18 +74,16 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      * @Given there are :count products
      */
   public function thereAreProducts($count){
-    $em = $this->getEntityManager();
-    for ($i=0; $i < $count; $i++){
-      $product = new Product();
-      $product->setName('Product '.$i);
-      $product->setPrice(rand(10, 100));
-      $product->setDescription('lorem');
-      
-      $em->persist($product);
-    }
-    $em->flush();
+    $this->createProducts($count);
   }
 
+  /**
+   * @Given I author :count products
+   */
+  public function iAuthorProducts($count){
+    $this->createProducts($count);
+  }
+  
   /**
    * @When I click :linkText
    */
@@ -104,6 +102,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     assertCount(intval($count), $table->findAll('css', 'tbody tr'));
   }
   
+
   /**
    * @Given I am logged in as an admin
    */
@@ -131,5 +130,21 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   private function getEntityManager() {
     return $this->getContainer()->get('doctrine.orm.entity_manager');
   }
-
+  
+  private function createProducts($count, User $author = null){
+    $em = $this->getEntityManager();
+    for ($i=0; $i < $count; $i++){
+      $product = new Product();
+      $product->setName('Product '.$i);
+      $product->setPrice(rand(10, 100));
+      $product->setDescription('lorem');
+      
+      if($author){
+        $product->setAuthor($author);
+      }
+      
+      $em->persist($product);
+    }
+    $em->flush();
+  }
 }
