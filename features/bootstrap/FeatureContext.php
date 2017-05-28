@@ -155,7 +155,9 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      * @Given the following products exist:
      */
   public function theFollowingProductsExist(TableNode $table){
-    throw new PendingException();
+    foreach ($table as $row){
+      var_dump($row);
+    };
   }
 
   /**
