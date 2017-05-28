@@ -188,7 +188,9 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    * @When I click :linkText in the :rowText row
    */
   public function iClickInTheRow($linkText, $rowText){
-   $row = $this->findRowByText($rowText);  
+    $row = $this->findRowByText($rowText);
+    $link = $row->findLink($linkText);
+    assertNotNull($link, 'Could not find link ' . $link);
   }
 
   
