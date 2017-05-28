@@ -186,6 +186,14 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
   
   /**
+   * @When I click :arg1 in the :arg2 row
+   */
+  public function iClickInTheRow($arg1, $arg2){
+      throw new PendingException();
+  }
+
+  
+  /**
    * @return \Behat\Mink\Element\DocumentElement
    */
   private function getPage(){
