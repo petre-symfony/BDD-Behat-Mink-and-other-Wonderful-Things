@@ -179,17 +179,16 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
    * @Then the :rowText row should have a check mark
    */
   public function theRowShouldHaveACheckMark($rowText){
-    $row = $this->getPage()->find('css', sprintf('table tr:contains("%s")', $rowText));
-    assertNotNull($row, 'Could not find a row with text ' . $rowText);
+    $row = $this->findRowByText($rowText);
     
     assertContains('fa-check', $row->getHtml(), 'Did not find the check in the row');
   }
   
   /**
-   * @When I click :arg1 in the :arg2 row
+   * @When I click :linkText in the :rowText row
    */
-  public function iClickInTheRow($arg1, $arg2){
-      throw new PendingException();
+  public function iClickInTheRow($linkText, $rowText){
+   $row = $this->findRowByText($rowText);  
   }
 
   
@@ -224,4 +223,15 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     $em->flush();
   }
   
+  /**
+   * 
+   * @param $linkText
+   * @return \Behat\Mink\Element\NodeElement|mixed|null
+   */
+  private function findRowByText($rowText) {
+    $row = $this->getPage()->find('css', sprintf('table tr:contains("%s")', $rowText));
+    assertNotNull($row, 'Could not find a row with text ' . $rowText); 
+    
+    return $row;
+  }
 }
