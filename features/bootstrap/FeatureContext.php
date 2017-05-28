@@ -176,6 +176,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
 
   /**
+   * @Then the :arg1 row should have a check mark
+   */
+  public function theRowShouldHaveACheckMark($arg1){
+      throw new PendingException();
+  }
+  
+  /**
    * @return \Behat\Mink\Element\DocumentElement
    */
   private function getPage(){
