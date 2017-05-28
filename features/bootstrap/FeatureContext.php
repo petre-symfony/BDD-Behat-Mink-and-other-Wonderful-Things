@@ -165,7 +165,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
       $product->setPrice(rand(10, 100));
       $product->setDescription('lorem');
       
-      if ($row['is published'] == 'yes'){
+      if (isset($row['is published']) && $row['is published'] == 'yes'){
         $product->setIsPublished(true);
       }
       
@@ -190,7 +190,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   public function iClickInTheRow($linkText, $rowText){
     $row = $this->findRowByText($rowText);
     $link = $row->findLink($linkText);
-    assertNotNull($link, 'Could not find link ' . $link);
+    assertNotNull($link, 'Could not find link ' . $linkText);
+    $link->click();
   }
 
   
