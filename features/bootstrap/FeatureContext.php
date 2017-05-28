@@ -152,6 +152,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
   
   /**
+     * @Given the following products exist:
+     */
+  public function theFollowingProductsExist(TableNode $table){
+    throw new PendingException();
+  }
+
+  /**
    * @When I wait for the modal to load
    */
   public function iWaitForTheModalToLoad(){

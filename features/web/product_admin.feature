@@ -17,6 +17,14 @@ Feature: Product Admin Area
     When I go to "/admin/products"
     Then I should not see "Anonymous"
 
+  Scenario: Show published/unpublished
+    Given the following products exist:
+      | name | is published |
+      | foo1 |     yes      |
+      | foo2 |     no       |
+    When I go to "/admin/products"
+    # todo
+
   @javascript
   Scenario: Add a new product
     Given I am on "/admin/products"
