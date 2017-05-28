@@ -29,6 +29,15 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
 
   /**
+   * @BeforeScenario
+   */
+  public function clearData(){
+    $em = $this->getContainer()->get('doctrine')->getManager();
+    $purger = new ORMPurger($em);
+    $purger->purge();
+  }
+
+  /**
    * @BeforeScenario @fixtures
    */
   public function loadFixtures(){
@@ -73,15 +82,6 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     $em->flush();
     
     return $user;
-  }
-
-  /**
-   * @BeforeScenario
-   */
-  public function clearData(){
-    $em = $this->getContainer()->get('doctrine')->getManager();
-    $purger = new ORMPurger($em);
-    $purger->purge();
   }
 
   
