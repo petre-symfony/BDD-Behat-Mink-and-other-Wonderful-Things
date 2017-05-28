@@ -23,7 +23,7 @@ Feature: Product Admin Area
     When I click "New Product"
     And I wait for the modal to load
     And I save a screenshot to "shot.png"
-    And I fill in "Product Name" with "Veloci-chew toy"
+    And I fill in "Name" with "Veloci-chew toy"
     And I fill in "Price" with "20"
     And I fill in "Description" with "Have your raptor chew on this instead!"
     And I press "Save"
