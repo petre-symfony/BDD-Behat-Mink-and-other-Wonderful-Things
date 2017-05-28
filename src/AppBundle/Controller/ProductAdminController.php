@@ -26,6 +26,7 @@ class ProductAdminController extends Controller {
    * @Route("/admin/products/new", name="product_new")
    */
   public function newAction(Request $request){
+    sleep(1);
     if ($request->isMethod("POST")){
       $product = new Product();
       $product->setName($request->get('name'));
