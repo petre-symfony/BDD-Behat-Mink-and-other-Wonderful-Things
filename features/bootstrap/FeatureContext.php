@@ -27,6 +27,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
 
   /**
+   * @BeforeScenario @fixtures
+   */
+  public function loadFixtures(){
+    var_dump('Go');
+  }
+
+  /**
    * @When I fill in the search box with :term
    */
   public function iFillInTheSearchBoxWith($term){
