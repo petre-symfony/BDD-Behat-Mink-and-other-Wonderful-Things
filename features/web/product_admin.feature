@@ -5,6 +5,7 @@ Feature: Product Admin Area
 
   Scenario: List available products
     Given there are 5 products
+    And there is 1 product
     And I am on "/admin"
     And I am logged in as an admin
     When I click "Products"
