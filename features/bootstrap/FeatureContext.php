@@ -185,14 +185,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
   
   /**
-   * @When I click :linkText in the :rowText row
+   * @When I press :buttonText in the :rowText row
    */
-  public function iClickInTheRow($linkText, $rowText){
+  public function iClickInTheRow($buttonText, $rowText){
     $row = $this->findRowByText($rowText);
-    var_dump($row->getHtml());
-    $link = $row->findLink($linkText);
-    assertNotNull($link, 'Could not find link ' . $linkText);
-    $link->click();
+    $button = $row->findButton($buttonText);
+    assertNotNull($button, 'Could not find link ' . $buttonText);
+    $button->press();
   }
 
   
