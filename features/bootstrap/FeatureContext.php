@@ -176,10 +176,13 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
   }
 
   /**
-   * @Then the :arg1 row should have a check mark
+   * @Then the :rowText row should have a check mark
    */
-  public function theRowShouldHaveACheckMark($arg1){
-      throw new PendingException();
+  public function theRowShouldHaveACheckMark($rowText){
+    $row = $this->getPage()->find('css', sprintf('table tr:contains("%s")', $rowText));
+    assertNotNull($row, 'Could not find a row with text ' . $rowText);
+    
+    assertContains('fa-check', $row->getHtml(), 'Did not find the check in the row');
   }
   
   /**
