@@ -16,6 +16,7 @@ Feature: Product Admin Area
     When I go to "/admin/products"
     Then I should not see "Anonymous"
 
+  @javascript
   Scenario: Add a new product
     Given I am logged in as an admin
     And I am on "/admin/products"
