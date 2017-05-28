@@ -10,6 +10,10 @@
         </ul>
     </div>
     <div class="col-sm-8">
+      <a href="{{ path('product_new') }}" class="btn btn-primary pull-right js-add-new-product">
+        <span class="fa fa-plus"></span>New Product
+      </a>
+      
       <h1 class="text-center">
         Product Admin Area
       </h1>
@@ -20,6 +24,7 @@
             <th>Price</th>
             <th>Author</th>
             <th>Is Published?</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +36,11 @@
               {{ product.author|default('Anonymous') }}
             </td>
             <td><i class="fa fa-{{ product.isPublished ? 'check' : 'times' }}"></i></td>
+            <td>
+              <form action="{{ path('product_delete', {'id': product.id}) }}" method="POST">
+                <button type="submit" class="btn btn-xs btn-link">Delete</button>
+              </form>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
