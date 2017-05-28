@@ -74,8 +74,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
 
   
   /**
-     * @Given there are :count products
-     * @Given there is :count product 
+     * @Given there is/are :count product(s)
      */
   public function thereAreProducts($count){
     $this->createProducts($count);

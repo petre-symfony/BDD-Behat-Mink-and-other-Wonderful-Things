@@ -9,7 +9,7 @@ Feature: Product Admin Area
     And I am on "/admin"
     And I am logged in as an admin
     When I click "Products"
-    Then I should see 5 products
+    Then I should see 6 products
 
   Scenario: Products show author
     Given I am logged in as an admin 
