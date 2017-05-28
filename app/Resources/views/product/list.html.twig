@@ -37,7 +37,7 @@
             </td>
             <td><i class="fa fa-{{ product.isPublished ? 'check' : 'times' }}"></i></td>
             <td>
-              <form action="{{ path('product_delete') }}" method="POST">
+              <form action="{{ path('product_delete', {'id': product.id}) }}" method="POST">
                 <button type="submit" class="btn btn-xs btn-link">Delete</button>
               </form>
             </td>
